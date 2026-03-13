@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IOLA Login</title>
+<style>
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:Arial,sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+}
+h1{color:#ff2e63;}
+input{
+  padding:12px 20px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
+button{
+  padding:12px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:20px;
+  background:#ff2e63;
+  color:white;
+  cursor:pointer;
+}
+button:hover{
+  background:white;
+  color:black;
+}
+#error{
+  color:#ff6961;
+  margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<h1>Angry Bird</h1>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="checkLogin()">Login</button>
+<p id="error"></p>
+
+<script>
+function checkLogin(){
+  const user=document.getElementById("username").value.trim();
+  const pass=document.getElementById("password").value.trim();
+  const errorMsg=document.getElementById("error");
+  
+  if(user.toLowerCase()==="iola" && pass==="3014"){
+    window.location.href="index.html";
+  }else{
+    errorMsg.innerText="Oops! Try Again 💔";
+  }
+}
+</script>
+
+</body>
+</html>

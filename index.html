@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Love ❤️</title>
+<style>
+/* Remove scroll */
+html, body {
+    overflow: hidden; /* disables scrolling */
+    height: 100vh;    /* full viewport height */
+    margin:0;
+    background:#ffffff;
+    color:#1b3a1b;
+    font-family:Arial;
+    text-align:center;
+}
+
+/* intro screen */
+#introScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+#introText{
+    color:#ff2e63;
+    font-size:40px;
+    opacity:0;
+    animation:fadeText 3s forwards;
+}
+@keyframes fadeText{
+0%{opacity:0}100%{opacity:1}
+}
+
+/* headings */
+h1 {margin-top:20px;color:#ff2e63;font-size:40px;}
+#message {font-size:22px;margin-top:5px;color:#ff6f91;}
+
+/* buttons */
+button {padding:10px 20px;border:none;border-radius:20px;background:#ff2e63;color:white;cursor:pointer;margin:8px;font-size:16px;transition:0.3s;}
+button:hover {background:#ff6f91;color:white;}
+
+/* slideshow */
+#photo{
+    width:35%;
+    max-width:300px;
+    border-radius:15px;
+    box-shadow:0 0 25px #ff2e63;
+    margin:20px auto 20px auto;
+    display:block;
+}
+
+/* fixed buttons above footer */
+#buttonsArea {
+    position: fixed;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* popups medium size */
+.popup{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#ffffff;
+    color:#111;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 25px #ff2e63;
+    width:320px;
+    max-width:90%;
+    z-index:2000;
+}
+.popup h2{
+    color:#ff2e63;
+    font-size:20px;
+}
+.closeBtn{position:absolute;top:8px;right:12px;cursor:pointer;}
+
+/* garden/footer full width */
+.garden{
+    position: fixed;
+    bottom:0;
+    width:100%;
+    height:110px;
+    background:#ffffff;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    align-items: flex-end;
+    padding: 0 10px;
+}
+.garden img{height:60px;filter: drop-shadow(0 0 5px #ff2e63);}
+
+/* floating favorite items */
+.favItem{
+    position:absolute;
+    height:45px;
+    pointer-events:auto;
+    animation:floatItem 20s linear infinite;
+}
+@keyframes floatItem{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-50vh)}
+}
+
+/* small floating hearts */
+.heart{
+    position:fixed;
+    font-size:14px;
+    animation:floatHeart 8s linear infinite;
+    pointer-events:none;
+}
+@keyframes floatHeart{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-20vh)}
+}
+
+/* memory tree */
+#memoryTreeArea{position:fixed;bottom:140px;right:40px;z-index:1500;text-align:center;}
+#tree{width:100px;cursor:pointer;transition:transform 0.3s;animation:sway 4s ease-in-out infinite;}
+#tree:hover{transform: scale(1.1);}
+@keyframes sway {0%{ transform: rotate(-3deg);}50%{transform: rotate(3deg);}100%{transform: rotate(-3deg);}}
+</style>
+</head>
+<body>
+
+<!-- intro -->
+<div id="introScreen">
+<h1 id="introText">For The Woman Who Changed My Life...</h1>
+</div>
+
+<h1>Welcome To My Heart ❤️</h1>
+<div id="message"></div>
+
+<!-- Slideshow -->
+<img id="photo" src="photo1.jpg">
+
+<!-- Fixed Buttons Area -->
+<div id="buttonsArea">
+    <button onclick="openSorry()">🙏 Sorry</button>
+    <button onclick="openProposal()">💖 Will You Be Mine?</button>
+    <button id="musicBtn" onclick="toggleMusic()">⏸️ Pause Music</button>
+</div>
+
+<!-- floating favorites -->
+<img src="plant.png" class="favItem" style="left:10vw;animation-duration:22s;">
+<img src="turtle1.png" class="favItem" style="left:30vw;animation-duration:25s;">
+<img src="turtle2.png" class="favItem" style="left:50vw;animation-duration:28s;">
+<img src="dog.png" class="favItem" style="left:70vw;animation-duration:24s;">
+<img src="teddy1.png" class="favItem" style="left:90vw;animation-duration:26s;">
+
+<!-- memory tree -->
+<div id="memoryTreeArea">
+<h2>Our Memory Tree 🌳</h2>
+<img src="tree.png" id="tree" onclick="openStory()">
+</div>
+
+<!-- popups -->
+<div id="sorry" class="popup">
+<span class="closeBtn" onclick="closeSorry()">✖</span>
+<h2>I'm Sorry ❤️</h2>
+<p>
+You are the woman of my life. I respect you deeply.<br><br>
+What I did in the past… I am truly sorry.<br>
+I have never seen someone so strong and determined.<br><br>
+How can someone lose a girl like you?<br>
+That is why I am trying again.<br><br>
+Please give me one chance.<br>
+I promise to make things <b>supercalifragilisticexpialidocious</b>.
+</p>
+</div>
+
+<div id="proposal" class="popup">
+<span class="closeBtn" onclick="closeProposal()">✖</span>
+<h2>Will You Be Mine Forever?</h2>
+<button id="yesBtn" onclick="yesLove()">Yes 💖</button>
+<button onclick="maybeLater()">Maybe Later</button>
+</div>
+
+<div id="yesResult" class="popup">
+<span class="closeBtn" onclick="closeYes()">✖</span>
+<h2>You Said YES 💍</h2>
+<img src="ring.png" width="120">
+</div>
+
+<div id="maybeResult" class="popup">
+<span class="closeBtn" onclick="closeMaybe()">✖</span>
+<h2>Life Still Has Surprises</h2>
+<img src="shiva.jpg" width="120">
+<img src="jesus.jpg" width="120">
+</div>
+
+<div id="storyPopup" class="popup">
+<span class="closeBtn" onclick="closeStory()">✖</span>
+<p>Every moment with you is magical. Your smile, your singing, your laughter — everything lights up my world ❤️</p>
+</div>
+
+<!-- garden -->
+<div class="garden">
+<img src="plant.png">
+<img src="dog.png">
+<img src="plant.png">
+<img src="teddy1.png">
+</div>
+
+<!-- small floating hearts -->
+<script>
+setInterval(()=>{
+    let heart=document.createElement("div")
+    heart.className="heart"
+    heart.innerHTML="❤️"
+    heart.style.left=Math.random()*100+"vw"
+    heart.style.animationDuration=(6+Math.random()*5)+"s"
+    document.body.appendChild(heart)
+    setTimeout(()=>heart.remove(),11000)
+},800)
+</script>
+
+<!-- background music -->
+<audio id="song" autoplay loop>
+<source src="song.mp3" type="audio/mp3">
+</audio>
+
+<script>
+/* Intro */
+setTimeout(()=>{document.getElementById("introScreen").style.display="none"},4000)
+
+/* slideshow with 8 images */
+const photos=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg","photo8.jpg"];
+let index=0;
+setInterval(()=>{
+  index=(index+1)%photos.length;
+  document.getElementById("photo").src=photos[index];
+},4000);
+
+/* typewriter */
+const text="You Are My Favorite Person ❤️"
+let i=0
+function type(){if(i<text.length){document.getElementById("message").innerHTML+=text[i];i++;setTimeout(type,80)}}
+type()
+
+/* music */
+function toggleMusic(){
+const song=document.getElementById("song")
+const btn=document.getElementById("musicBtn")
+if(song.paused){song.play();btn.innerHTML="⏸️ Pause Music"}
+else{song.pause();btn.innerHTML="▶️ Play Music"}
+}
+
+/* popups */
+function openSorry(){document.getElementById("sorry").style.display="block"}
+function closeSorry(){document.getElementById("sorry").style.display="none"}
+
+function openProposal(){document.getElementById("proposal").style.display="block"}
+function closeProposal(){document.getElementById("proposal").style.display="none"}
+
+function yesLove(){
+document.getElementById("proposal").style.display="none"
+document.getElementById("yesResult").style.display="block"
+}
+
+function maybeLater(){
+document.getElementById("proposal").style.display="none"
+document.getElementById("maybeResult").style.display="block"
+}
+
+/* close popups */
+function closeYes(){document.getElementById("yesResult").style.display="none"}
+function closeMaybe(){document.getElementById("maybeResult").style.display="none"}
+
+/* Memory Tree Story */
+function openStory(){document.getElementById("storyPopup").style.display="block"}
+function closeStory(){document.getElementById("storyPopup").style.display="none"}
+</script>
+</body>
+</html>
